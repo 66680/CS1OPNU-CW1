@@ -42,7 +42,7 @@ The report must show critical thinking, self-reflection, and evaluation rather t
 | Introduction | 180-220 | Introduce CW1 project and report focus |
 | AI support analysis | 500-550 | Explain use, benefits, limits, learning impact |
 | Pattern analysis | 500-550 | Evaluate Singleton, Observer, Factory with trade-offs |
-| Ethical/legal considerations | 400-450 | AI integrity, privacy, misuse, accessibility, licensing |
+| Ethical/legal considerations | 430-480 | Over-reliance, originality, acknowledgement, responsibility, privacy, misuse |
 | Conclusion | 180-220 | Summarise learning and recommendations |
 | References | 6-8 entries | Support scholarship and writing quality |
 
@@ -134,14 +134,46 @@ Required subtopics:
 - Over-reliance on AI-generated content.
 - Potential biases in AI-generated code or suggestions.
 - Academic integrity and originality.
+- Acknowledgement of GenAI use.
+- Responsibility for final submitted work.
 - Data handling and privacy.
 - Broader ethical and legal implications.
 
-Recommended content:
+Recommended structure:
+
+1. Over-reliance.
+   - Risk: accepting AI-generated designs or prose without understanding would weaken learning and could make the work unoriginal.
+   - Project-specific response: AI suggestions were checked against tests, the assignment brief, and the actual Java implementation.
+   - Evidence: `mvn clean test`, 44 passing tests, and commits showing test and implementation stages.
+
+2. Originality.
+   - Explain that the project should be submitted as the student's own assessed work, with AI treated as a support tool rather than an author.
+   - Emphasise that final design decisions were project-specific: Java CLI game, local multiplayer, no networking, BFS hints, `give`, and `inspect`.
+   - Avoid claiming that every idea was invented without assistance.
+
+3. Acknowledgement.
+   - State that GenAI use must be declared because the assignment asks for AI use and the academic integrity guidance requires acknowledgement.
+   - The report should name the tool used, e.g. ChatGPT/Codex, and state what it supported: planning, design-pattern discussion, test planning, documentation structure, and reflection drafting.
+   - If generated wording or suggestions are included in modified form, state that they were reviewed and adapted.
+
+4. Responsibility for final work.
+   - State that the student remains responsible for correctness, originality, references, and final submission.
+   - Explain that responsibility was exercised through running tests, reading code, checking README/REPORT claims against the repository, and filling personal fields truthfully.
+
+5. Privacy, misuse, accessibility, and licensing.
+   - Privacy: the game uses fictional player names and no real personal data; no database, accounts, or network.
+   - GDPR: if extended to real user accounts, data minimisation and purpose limitation would matter.
+   - Misuse: low risk because it is a local CLI game, but networked multiplayer would need stronger safeguards.
+   - Accessibility: CLI is keyboard-based and simple, but could improve prompts and error guidance.
+   - Licensing: Java, Maven, and JUnit are standard tools/dependencies; references should acknowledge external sources.
+
+Recommended content summary:
 
 - Over-reliance risk: if code is accepted without understanding, learning and originality suffer.
 - Bias/quality risk: AI may suggest common designs that are not suitable for the assignment.
-- Academic integrity: AI use should be declared; final responsibility remains with the student.
+- Academic integrity: AI use should be declared; final responsibility remains with the student, not the AI system.
+- Acknowledgement: include a clear GenAI acknowledgement in `REPORT.md`.
+- Responsibility: explain how tests, review, and project-specific adaptation support responsibility for the final work.
 - Privacy: the game uses fictional player names and no real personal data; no database, accounts, or network.
 - GDPR: if extended to real user accounts, data minimisation and purpose limitation would matter.
 - Misuse: low risk because it is a local CLI game, but shared systems could expose messages or user data if networking were added.
@@ -234,13 +266,16 @@ Quality check:
 
 Actions:
 
-- Write 400-450 words.
-- Cover AI integrity, over-reliance, bias, privacy, GDPR, misuse, accessibility, and licensing.
+- Write 430-480 words.
+- Use the structure: over-reliance, originality, acknowledgement, responsibility for final work, then privacy/misuse/accessibility/licensing.
+- Include a clear GenAI acknowledgement sentence.
 
 Quality check:
 
+- Explicitly covers over-reliance, originality, acknowledgement, and responsibility for final work.
 - States that no real personal data is handled.
 - Explains what would change if the project handled real users.
+- Does not imply AI-generated material was submitted without review.
 
 ### Task 6: Draft Conclusion
 
@@ -291,11 +326,13 @@ Report QA checklist:
 - Word count is under 2,000.
 - All required sections are present.
 - AI tools used are declared.
+- GenAI acknowledgement states tool name and how it was used.
 - Student number and hours are filled.
 - Every claim about the project can be traced to code, tests, README, or git log.
 - References are listed.
 - No fabricated experiences or unsupported claims.
 - No code output or AI text is presented as unreviewed personal work.
+- Ethical section explicitly covers over-reliance, originality, acknowledgement, and responsibility for final work.
 
 Technical evidence checklist:
 
@@ -309,8 +346,10 @@ Academic integrity checklist:
 
 - The student reviews and personalises the report.
 - The report accurately states AI use.
+- The report includes a GenAI acknowledgement in plain language.
 - The report reflects actual decisions made in the CW1 project.
 - The report does not claim manual work that was not done.
+- The report states that final responsibility remains with the student.
 
 ## 7. High-Scoring Writing Strategy
 
