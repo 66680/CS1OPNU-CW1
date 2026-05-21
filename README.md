@@ -112,6 +112,7 @@ Other structures are chosen for simplicity and efficiency: rooms use `Map<String
 - Networking is omitted because it is optional.
 - Java 8-compatible syntax is used so the project runs on the available local JDK and newer JDKs.
 - Student number and actual hours must be filled in before submission.
+- Before submission, push the repository to CSGitLab as `CS1OPNU-CW1` and submit the repository zip plus link.
 
 ## Build, Run, and Test
 
