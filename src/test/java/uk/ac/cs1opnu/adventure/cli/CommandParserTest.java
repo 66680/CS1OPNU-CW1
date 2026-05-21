@@ -14,6 +14,8 @@ class CommandParserTest {
         assertEquals("Alice", CommandParser.parse("switch Alice").getFirstArgument().orElse(null));
         assertEquals("vault", CommandParser.parse("hint vault").getFirstArgument().orElse(null));
         assertEquals(CommandType.HINT, CommandParser.parse("hint vault").getType());
+        assertEquals(CommandType.INSPECT, CommandParser.parse("inspect note").getType());
+        assertEquals(CommandType.GIVE, CommandParser.parse("give brass_key Bob").getType());
         assertEquals(CommandType.SOLVE, CommandParser.parse("solve console ORION").getType());
     }
 

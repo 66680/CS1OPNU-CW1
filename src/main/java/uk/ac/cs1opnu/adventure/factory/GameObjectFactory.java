@@ -5,6 +5,12 @@ import uk.ac.cs1opnu.adventure.model.KeyItem;
 import uk.ac.cs1opnu.adventure.model.Puzzle;
 import uk.ac.cs1opnu.adventure.model.TreasureItem;
 
+/**
+ * Factory for reusable game object templates.
+ *
+ * <p>The engine asks for objects by template ID instead of directly coupling
+ * itself to every concrete item or puzzle constructor.</p>
+ */
 public final class GameObjectFactory {
     private GameObjectFactory() {
     }

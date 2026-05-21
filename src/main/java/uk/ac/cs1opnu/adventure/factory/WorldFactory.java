@@ -7,6 +7,12 @@ import uk.ac.cs1opnu.adventure.model.Room;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Factory for the default playable world.
+ *
+ * <p>Room creation, exits, locked doors, items, and puzzles are assembled here
+ * so world setup stays separate from game rule execution.</p>
+ */
 public final class WorldFactory {
     private WorldFactory() {
     }

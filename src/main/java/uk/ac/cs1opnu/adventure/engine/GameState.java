@@ -10,6 +10,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Singleton holder for the shared game session.
+ *
+ * <p>The CLI, engine, players, world map, and event log all use this single
+ * state object so there is one authoritative version of the game world.</p>
+ */
 public final class GameState {
     private static final GameState INSTANCE = new GameState();
 

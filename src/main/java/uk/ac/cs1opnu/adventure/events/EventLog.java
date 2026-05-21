@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Observable event history for the shared game session.
+ *
+ * <p>It records each event for testing and notifies player observers so
+ * multiplayer actions are visible to the whole group.</p>
+ */
 public class EventLog extends Observable {
     private final List<GameEvent> events = new ArrayList<GameEvent>();
 

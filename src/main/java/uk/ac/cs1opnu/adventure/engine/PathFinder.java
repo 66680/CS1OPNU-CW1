@@ -13,6 +13,12 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * Breadth-first search route finder for the room graph.
+ *
+ * <p>Rooms are graph nodes and exits are edges. Because each exit has equal
+ * cost, BFS finds the shortest currently available route in O(V + E) time.</p>
+ */
 public final class PathFinder {
     private PathFinder() {
     }

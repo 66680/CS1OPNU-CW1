@@ -48,6 +48,10 @@ public class Player implements Observer {
         return Optional.ofNullable(inventory.get(itemId));
     }
 
+    public Optional<Item> removeItem(String itemId) {
+        return Optional.ofNullable(inventory.remove(itemId));
+    }
+
     public List<Item> getInventory() {
         return Collections.unmodifiableList(new ArrayList<Item>(inventory.values()));
     }

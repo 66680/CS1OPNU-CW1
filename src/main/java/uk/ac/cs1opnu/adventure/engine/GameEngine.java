@@ -15,6 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Applies game rules to the shared state.
+ *
+ * <p>This class keeps command execution separate from the CLI. It manages
+ * movement, inventory, player collaboration, puzzles, hints, and win logic.</p>
+ */
 public class GameEngine {
     private final GameState state;
 
@@ -74,6 +80,50 @@ public class GameEngine {
             return GameResult.success("You recovered the Star Crystal. The team wins.");
         }
         return GameResult.success("You picked up " + item.get().getName() + ".");
+    }
+
+    public GameResult give(String itemId, String targetPlayerName) {
+        Player activePlayer = state.getActivePlayer();
+        Player targetPlayer;
+        try {
+            targetPlayer = state.getPlayer(targetPlayerName);
+        } catch (IllegalArgumentException ex) {
+            return GameResult.failure(ex.getMessage());
+        }
+        if (activePlayer.getName().equals(targetPlayer.getName())) {
+            return GameResult.failure("You cannot give an item to yourself.");
+        }
+        if (!activePlayer.getCurrentRoomId().equals(targetPlayer.getCurrentRoomId())) {
+            return GameResult.failure("Players must be in the same room to give items.");
+        }
+        Optional<Item> item = activePlayer.removeItem(itemId);
+        if (!item.isPresent()) {
+            return GameResult.failure("You do not have " + itemId + ".");
+        }
+        targetPlayer.addItem(item.get());
+        publish(GameEventType.ITEM_GIVEN, activePlayer.getName() + " gave " + item.get().getName() + " to " + targetPlayer.getName() + ".");
+        return GameResult.success("You gave " + item.get().getName() + " to " + targetPlayer.getName() + ".");
+    }
+
+    public GameResult inspect(String targetId) {
+        Player player = state.getActivePlayer();
+        Room room = state.getCurrentRoom();
+        if ("room".equalsIgnoreCase(targetId)) {
+            return look();
+        }
+        Optional<Item> carriedItem = player.getItem(targetId);
+        if (carriedItem.isPresent()) {
+            return GameResult.success(carriedItem.get().getName() + ": " + carriedItem.get().getDescription());
+        }
+        Optional<Item> roomItem = room.findItem(targetId);
+        if (roomItem.isPresent()) {
+            return GameResult.success(roomItem.get().getName() + ": " + roomItem.get().getDescription());
+        }
+        Optional<Puzzle> puzzle = room.getPuzzle();
+        if (puzzle.isPresent() && puzzle.get().getId().equals(targetId)) {
+            return GameResult.success(puzzle.get().getPrompt());
+        }
+        return GameResult.failure("Cannot inspect " + targetId + " here.");
     }
 
     public GameResult solve(String puzzleId, String answer) {

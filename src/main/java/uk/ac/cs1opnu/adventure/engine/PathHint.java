@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Immutable result returned by {@link PathFinder}.
+ */
 public class PathHint {
     private final String targetRoomId;
     private final List<Direction> directions;

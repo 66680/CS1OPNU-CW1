@@ -30,11 +30,17 @@ public final class CommandParser {
         if ("look".equals(verb)) {
             return new Command(CommandType.LOOK, args);
         }
+        if ("inspect".equals(verb)) {
+            return new Command(CommandType.INSPECT, args);
+        }
         if ("go".equals(verb)) {
             return new Command(CommandType.GO, args);
         }
         if ("take".equals(verb)) {
             return new Command(CommandType.TAKE, args);
+        }
+        if ("give".equals(verb)) {
+            return new Command(CommandType.GIVE, args);
         }
         if ("inventory".equals(verb) || "inv".equals(verb)) {
             return new Command(CommandType.INVENTORY, args);

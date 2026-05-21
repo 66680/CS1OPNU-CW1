@@ -50,6 +50,10 @@ public class CommandLineInterface {
                         .orElse(GameResult.failure("Usage: switch <player>"));
             case LOOK:
                 return engine.look();
+            case INSPECT:
+                return command.getFirstArgument()
+                        .map(engine::inspect)
+                        .orElse(GameResult.failure("Usage: inspect <room|item|puzzle>"));
             case GO:
                 return command.getDirection()
                         .map(engine::move)
@@ -58,6 +62,12 @@ public class CommandLineInterface {
                 return command.getFirstArgument()
                         .map(engine::take)
                         .orElse(GameResult.failure("Usage: take <item>"));
+            case GIVE:
+                List<String> giveArgs = command.getArguments();
+                if (giveArgs.size() < 2) {
+                    return GameResult.failure("Usage: give <item> <player>");
+                }
+                return engine.give(giveArgs.get(0), giveArgs.get(1));
             case INVENTORY:
                 return engine.inventory();
             case USE:
@@ -86,6 +96,6 @@ public class CommandLineInterface {
     }
 
     private String helpText() {
-        return "Commands: help, players, switch <player>, look, go <direction>, take <item>, inventory, use <item>, hint <room|item>, solve <puzzle> <answer>, quit";
+        return "Commands: help, players, switch <player>, look, inspect <target>, go <direction>, take <item>, give <item> <player>, inventory, use <item>, hint <room|item>, solve <puzzle> <answer>, quit";
     }
 }
