@@ -9,6 +9,7 @@ public enum CommandType {
     TAKE,
     INVENTORY,
     USE,
+    HINT,
     SOLVE,
     QUIT,
     UNKNOWN

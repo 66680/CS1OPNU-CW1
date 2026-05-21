@@ -12,6 +12,8 @@ class CommandParserTest {
         assertEquals(Direction.NORTH, CommandParser.parse("go north").getDirection().orElse(null));
         assertEquals("brass_key", CommandParser.parse("take brass_key").getFirstArgument().orElse(null));
         assertEquals("Alice", CommandParser.parse("switch Alice").getFirstArgument().orElse(null));
+        assertEquals("vault", CommandParser.parse("hint vault").getFirstArgument().orElse(null));
+        assertEquals(CommandType.HINT, CommandParser.parse("hint vault").getType());
         assertEquals(CommandType.SOLVE, CommandParser.parse("solve console ORION").getType());
     }
 

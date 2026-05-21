@@ -64,6 +64,10 @@ public class CommandLineInterface {
                 return command.getFirstArgument()
                         .map(engine::use)
                         .orElse(GameResult.failure("Usage: use <item>"));
+            case HINT:
+                return command.getFirstArgument()
+                        .map(engine::hint)
+                        .orElse(GameResult.failure("Usage: hint <room|item>"));
             case SOLVE:
                 List<String> args = command.getArguments();
                 if (args.size() < 2) {
@@ -82,6 +86,6 @@ public class CommandLineInterface {
     }
 
     private String helpText() {
-        return "Commands: help, players, switch <player>, look, go <direction>, take <item>, inventory, use <item>, solve <puzzle> <answer>, quit";
+        return "Commands: help, players, switch <player>, look, go <direction>, take <item>, inventory, use <item>, hint <room|item>, solve <puzzle> <answer>, quit";
     }
 }

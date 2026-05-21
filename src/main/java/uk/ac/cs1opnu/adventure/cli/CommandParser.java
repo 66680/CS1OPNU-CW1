@@ -42,6 +42,9 @@ public final class CommandParser {
         if ("use".equals(verb)) {
             return new Command(CommandType.USE, args);
         }
+        if ("hint".equals(verb)) {
+            return new Command(CommandType.HINT, args);
+        }
         if ("solve".equals(verb)) {
             return new Command(CommandType.SOLVE, args);
         }

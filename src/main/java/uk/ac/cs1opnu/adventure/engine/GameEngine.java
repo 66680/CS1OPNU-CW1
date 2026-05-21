@@ -133,6 +133,31 @@ public class GameEngine {
         return GameResult.success("Players: " + String.join(", ", state.getPlayers().keySet()));
     }
 
+    public GameResult hint(String targetId) {
+        Optional<PathHint> path = PathFinder.findPath(
+                state.getRooms(),
+                state.getActivePlayer().getCurrentRoomId(),
+                targetId
+        );
+        if (!path.isPresent()) {
+            return GameResult.failure("No available route to " + targetId + ". A locked door or missing target may be blocking the path.");
+        }
+        PathHint hint = path.get();
+        if (hint.getDirections().isEmpty()) {
+            return GameResult.success("You are already at " + hint.getTargetRoomId() + ".");
+        }
+        return GameResult.success("Shortest route to " + targetId + " is through "
+                + hint.getTargetRoomId() + ": " + formatDirections(hint.getDirections()) + ".");
+    }
+
+    private String formatDirections(List<Direction> directions) {
+        List<String> names = new ArrayList<String>();
+        for (Direction direction : directions) {
+            names.add(direction.name().toLowerCase());
+        }
+        return String.join(" -> ", names);
+    }
+
     private void publish(GameEventType type, String message) {
         state.getEventLog().publish(new GameEvent(type, state.getActivePlayer().getName(), message));
     }
