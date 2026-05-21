@@ -6,7 +6,7 @@
 
 **Target Length:** 1,800-2,000 words, excluding the reference list if the module accepts references outside the word count. Keep below 2,000 unless Blackboard guidance says otherwise.
 
-**Core Argument:** AI tools were useful as a planning, testing, and design-support aid, but the quality of the project came from human review, test-driven verification, and deliberate design decisions. The Singleton, Observer, and Factory patterns improved structure, but each introduced trade-offs that had to be managed.
+**Core Argument:** AI tools were useful as a planning, testing, and design-support aid, but the quality of the project came from human review, test-driven verification, and deliberate design decisions. The Singleton, Observer, and Factory patterns improved structure, but each introduced trade-offs that had to be managed. A later usability review also improved accessibility evidence through clearer help text and guided error messages.
 
 ---
 
@@ -53,7 +53,7 @@ The report must show critical thinking, self-reflection, and evaluation rather t
 Main points:
 
 - Briefly describe the CW1 game: Java CLI multiplayer text adventure.
-- Mention major features: rooms, items, puzzle, locked door, player switching, `give`, `inspect`, `hint`, win condition.
+- Mention major features: rooms, items, puzzle, locked door, player switching, `give`, `inspect`, `hint`, grouped help output, guided error messages, and win condition.
 - State the report evaluates AI support and design patterns.
 - Thesis: AI was helpful but required human judgement and testing; patterns improved modularity but had trade-offs.
 
@@ -61,7 +61,7 @@ Evidence from project:
 
 - `README.md`
 - `DEVELOPMENT_LOG.md`
-- `mvn clean test`: 44 passing tests
+- `mvn clean test`: 48 passing tests
 
 ### Analysis of AI Support in Software Development
 
@@ -77,14 +77,15 @@ Recommended content:
 - AI helped plan the architecture, identify how to use Observer, and design tests.
 - AI helped compare whether to implement networking and why not to because networking was optional and high risk.
 - AI helped suggest BFS for `hint <target>`, but the code was verified with tests.
+- AI-assisted review identified accessibility/usability gaps; the project was then improved with grouped help text, examples, and clearer error guidance.
 - Benefits: faster ideation, clearer breakdown, useful edge-case checklist, improved documentation.
 - Limitations: AI suggestions can be too broad, may over-engineer, may miss course-specific constraints, and cannot replace understanding.
-- Learning impact: helped expose trade-offs, but TDD and manual review made learning active rather than passive.
+- Learning impact: helped expose trade-offs, but TDD, manual review, and CLI smoke tests made learning active rather than passive.
 
 Concrete evidence:
 
-- Commits: `834cb54`, `80e045e`, `e09a0e3`, `a5a254c`
-- Tests: `PathFinderTest`, `GameEngineInteractionTest`, `ObserverPatternTest`
+- Commits: `834cb54`, `80e045e`, `e09a0e3`, `a5a254c`, `1f7b239`
+- Tests: `PathFinderTest`, `GameEngineInteractionTest`, `GameEngineGuidanceTest`, `ObserverPatternTest`
 - README AI declaration
 
 High-score angle:
@@ -126,6 +127,7 @@ Factory:
 Additional design note:
 
 - BFS `PathFinder` is not a required pattern but supports performance and architecture marks.
+- CLI guidance is not a design pattern, but it supports usability/accessibility marks and shows that the project was refined after reviewing edge cases.
 
 ### Ethical and Legal Considerations
 
@@ -144,11 +146,11 @@ Recommended structure:
 1. Over-reliance.
    - Risk: accepting AI-generated designs or prose without understanding would weaken learning and could make the work unoriginal.
    - Project-specific response: AI suggestions were checked against tests, the assignment brief, and the actual Java implementation.
-   - Evidence: `mvn clean test`, 44 passing tests, and commits showing test and implementation stages.
+   - Evidence: `mvn clean test`, 48 passing tests, and commits showing test and implementation stages.
 
 2. Originality.
    - Explain that the project should be submitted as the student's own assessed work, with AI treated as a support tool rather than an author.
-   - Emphasise that final design decisions were project-specific: Java CLI game, local multiplayer, no networking, BFS hints, `give`, and `inspect`.
+   - Emphasise that final design decisions were project-specific: Java CLI game, local multiplayer, no networking, BFS hints, `give`, `inspect`, grouped help text, and guided error messages.
    - Avoid claiming that every idea was invented without assistance.
 
 3. Acknowledgement.
@@ -164,7 +166,7 @@ Recommended structure:
    - Privacy: the game uses fictional player names and no real personal data; no database, accounts, or network.
    - GDPR: if extended to real user accounts, data minimisation and purpose limitation would matter.
    - Misuse: low risk because it is a local CLI game, but networked multiplayer would need stronger safeguards.
-   - Accessibility: CLI is keyboard-based and simple, but could improve prompts and error guidance.
+   - Accessibility: CLI is keyboard-based and simple. After review, it was improved with grouped help text, command examples, available-exit guidance, visible-item guidance, and `inspect console` hints after wrong puzzle answers.
    - Licensing: Java, Maven, and JUnit are standard tools/dependencies; references should acknowledge external sources.
 
 Recommended content summary:
@@ -177,7 +179,7 @@ Recommended content summary:
 - Privacy: the game uses fictional player names and no real personal data; no database, accounts, or network.
 - GDPR: if extended to real user accounts, data minimisation and purpose limitation would matter.
 - Misuse: low risk because it is a local CLI game, but shared systems could expose messages or user data if networking were added.
-- Accessibility: CLI is simple and keyboard-based, but could be improved with clearer prompts and help text.
+- Accessibility: CLI is simple and keyboard-based, with clearer prompts, grouped help text, examples, and guided error messages added after review.
 - Licensing: Java, Maven, and JUnit use standard tooling; dependencies should be cited or acknowledged.
 
 ### Conclusion
@@ -186,6 +188,7 @@ Recommended content:
 
 - Summarise that AI improved planning and feedback loops but did not replace testing and understanding.
 - Patterns improved organisation, collaboration mechanics, and maintainability.
+- Usability improvements show that ethical/accessibility reflection fed back into the CW1 implementation rather than remaining theoretical.
 - Main learning: design patterns are useful when tied to concrete problems, not when added only for appearance.
 - Recommendation: use AI for alternatives, edge cases, and explanations; use tests and documentation to verify the final design.
 
@@ -243,6 +246,7 @@ Actions:
 - Write 500-550 words.
 - Use project-specific examples from commits, tests, and design decisions.
 - Include benefits and limitations.
+- Include the later accessibility/usability review as an example of AI-supported reflection being converted into tested code changes.
 
 Quality check:
 
@@ -269,12 +273,14 @@ Actions:
 - Write 430-480 words.
 - Use the structure: over-reliance, originality, acknowledgement, responsibility for final work, then privacy/misuse/accessibility/licensing.
 - Include a clear GenAI acknowledgement sentence.
+- Mention that accessibility concerns were partially addressed in CW1 through improved help and error guidance, while privacy/GDPR risks were kept low by avoiding accounts, real personal data, and networking.
 
 Quality check:
 
 - Explicitly covers over-reliance, originality, acknowledgement, and responsibility for final work.
 - States that no real personal data is handled.
 - Explains what would change if the project handled real users.
+- Distinguishes between risks fixed in CW1, such as CLI guidance, and risks deliberately avoided, such as account data and networking.
 - Does not imply AI-generated material was submitted without review.
 
 ### Task 6: Draft Conclusion
@@ -337,7 +343,7 @@ Report QA checklist:
 Technical evidence checklist:
 
 - Run `mvn clean test`.
-- Record final test result: currently 44 tests passing.
+- Record final test result: currently 48 tests passing.
 - Check `git log --oneline`.
 - Check `git status --short`.
 - Confirm README and docs support the claims made in REPORT.
@@ -348,6 +354,7 @@ Academic integrity checklist:
 - The report accurately states AI use.
 - The report includes a GenAI acknowledgement in plain language.
 - The report reflects actual decisions made in the CW1 project.
+- The report mentions the final CLI guidance improvement only as completed work after commit `1f7b239`.
 - The report does not claim manual work that was not done.
 - The report states that final responsibility remains with the student.
 
