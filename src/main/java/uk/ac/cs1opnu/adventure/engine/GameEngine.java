@@ -54,7 +54,8 @@ public class GameEngine {
         Room room = state.getCurrentRoom();
         Optional<String> targetRoomId = room.getExit(direction);
         if (!targetRoomId.isPresent()) {
-            return GameResult.failure("There is no exit " + direction.name().toLowerCase() + ".");
+            return GameResult.failure("There is no exit " + direction.name().toLowerCase()
+                    + ". Available exits: " + formatAvailableExits(room) + ".");
         }
         if (!room.canExit(direction)) {
             return GameResult.failure("The way is locked.");
@@ -70,7 +71,7 @@ public class GameEngine {
         Room room = state.getCurrentRoom();
         Optional<Item> item = room.removeItem(itemId);
         if (!item.isPresent()) {
-            return GameResult.failure("There is no " + itemId + " here.");
+            return GameResult.failure("There is no " + itemId + " here. Available items: " + formatAvailableItems(room) + ".");
         }
         player.addItem(item.get());
         publish(GameEventType.ITEM_TAKEN, player.getName() + " picked up " + item.get().getName() + ".");
@@ -134,7 +135,7 @@ public class GameEngine {
             return GameResult.failure("There is no puzzle named " + puzzleId + " here.");
         }
         if (!puzzle.get().solve(answer)) {
-            return GameResult.failure("That answer does not work.");
+            return GameResult.failure("That answer does not work. Try inspect " + puzzleId + " for the clue.");
         }
         publish(GameEventType.PUZZLE_SOLVED, player.getName() + " solved the " + puzzleId + " puzzle.");
         return GameResult.success("The console accepts the answer.");
@@ -206,6 +207,28 @@ public class GameEngine {
             names.add(direction.name().toLowerCase());
         }
         return String.join(" -> ", names);
+    }
+
+    private String formatAvailableExits(Room room) {
+        List<String> exits = new ArrayList<String>();
+        for (Direction direction : room.getExits().keySet()) {
+            exits.add(direction.name().toLowerCase());
+        }
+        if (exits.isEmpty()) {
+            return "none";
+        }
+        return String.join(", ", exits);
+    }
+
+    private String formatAvailableItems(Room room) {
+        List<String> items = new ArrayList<String>();
+        for (Item item : room.getItems()) {
+            items.add(item.getId());
+        }
+        if (items.isEmpty()) {
+            return "none";
+        }
+        return String.join(", ", items);
     }
 
     private void publish(GameEventType type, String message) {

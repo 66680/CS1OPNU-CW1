@@ -20,7 +20,7 @@ The implementation focuses on object-oriented design, layered software structure
 
 The game is organised into clear layers. The CLI package parses and displays commands, the engine package enforces rules, the model package stores domain objects, the events package implements Observer notifications, and the factory package builds game objects and the world map. This separation keeps the command-line interface independent from the game rules and makes the core logic testable.
 
-The project extends the basic adventure requirements with collaborative item transfer and route hints. `give <item> <player>` lets players cooperate directly, while `hint <target>` uses breadth-first search to find the shortest currently available route to a room or item.
+The project extends the basic adventure requirements with collaborative item transfer, route hints, and clearer CLI guidance. `give <item> <player>` lets players cooperate directly, while `hint <target>` uses breadth-first search to find the shortest currently available route to a room or item. The help output groups commands with examples, and failure messages suggest available exits, visible items, or inspection commands where useful.
 
 ## Requirements
 
@@ -114,6 +114,10 @@ Other structures are chosen for simplicity and efficiency: rooms use `Map<String
 - Student number and actual hours must be filled in before submission.
 - Before submission, push the repository to CSGitLab as `CS1OPNU-CW1` and submit the repository zip plus link.
 
+## Accessibility and Usability
+
+The CLI is keyboard-based and uses plain text, so it can run in a standard terminal. To improve usability, `help` groups commands by purpose and includes examples. Error messages avoid silent failure and guide the player toward valid actions, such as available exits, visible items, or `inspect console` after a wrong puzzle answer.
+
 ## Build, Run, and Test
 
 ```powershell
@@ -147,4 +151,4 @@ take star_crystal
 
 ## Testing Strategy and Edge Cases
 
-The JUnit 5 suite covers domain classes, command parsing, Singleton state, Observer events, Factory construction, BFS pathfinding, item transfer, inspection, inventory, movement, puzzle progression, and a full two-player flow. Edge cases include invalid exits, missing items, item transfer between different rooms, wrong puzzle answers, unknown players, locked doors, missing hint targets, and zero-length hint paths.
+The JUnit 5 suite covers domain classes, command parsing, Singleton state, Observer events, Factory construction, BFS pathfinding, item transfer, inspection, inventory, movement, puzzle progression, and a full two-player flow. Edge cases include invalid exits, missing items, item transfer between different rooms, wrong puzzle answers, unknown players, locked doors, missing hint targets, zero-length hint paths, and user-facing guidance text.

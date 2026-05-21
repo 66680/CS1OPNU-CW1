@@ -24,4 +24,15 @@ class CommandParserTest {
         assertEquals(CommandType.UNKNOWN, CommandParser.parse("").getType());
         assertEquals(CommandType.UNKNOWN, CommandParser.parse("dance").getType());
     }
+
+    @Test
+    void helpTextGroupsCommandsAndShowsExamples() {
+        String help = CommandLineInterface.helpText();
+
+        assertTrue(help.contains("Movement"));
+        assertTrue(help.contains("Interaction"));
+        assertTrue(help.contains("Examples"));
+        assertTrue(help.contains("give brass_key Bob"));
+        assertTrue(help.contains("hint star_crystal"));
+    }
 }

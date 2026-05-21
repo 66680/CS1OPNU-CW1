@@ -95,7 +95,15 @@ public class CommandLineInterface {
         }
     }
 
-    private String helpText() {
-        return "Commands: help, players, switch <player>, look, inspect <target>, go <direction>, take <item>, give <item> <player>, inventory, use <item>, hint <room|item>, solve <puzzle> <answer>, quit";
+    static String helpText() {
+        return "Commands:" + System.lineSeparator()
+                + "  Movement: look, go <north|east|south|west>, hint <room|item>" + System.lineSeparator()
+                + "  Interaction: inspect <target>, take <item>, give <item> <player>, use <item>, solve <puzzle> <answer>" + System.lineSeparator()
+                + "  Session: players, switch <player>, inventory, help, quit" + System.lineSeparator()
+                + "Examples:" + System.lineSeparator()
+                + "  inspect room" + System.lineSeparator()
+                + "  go east" + System.lineSeparator()
+                + "  give brass_key Bob" + System.lineSeparator()
+                + "  hint star_crystal";
     }
 }
