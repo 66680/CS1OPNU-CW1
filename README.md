@@ -4,9 +4,9 @@ Module Code: CS1OPNU
 
 Assignment report Title: Project
 
-Student Number: TODO
+Student Number: 33804516
 
-Actual hrs spent for the assignment: TODO
+Actual hrs spent for the assignment: 12
 
 Which Artificial Intelligence tools used: ChatGPT/Codex was used to support planning, test design, and the Observer pattern structure. The implementation should be reviewed, understood, tested, and adapted by the student before submission.
 
@@ -111,7 +111,6 @@ Other structures are chosen for simplicity and efficiency: rooms use `Map<String
 - Multiplayer is implemented as turn switching in one shared CLI session.
 - Networking is omitted because it is optional.
 - Java 8-compatible syntax is used so the project runs on the available local JDK and newer JDKs.
-- Student number and actual hours must be filled in before submission.
 - Before submission, push the repository to CSGitLab as `CS1OPNU-CW1` and submit the repository zip plus link.
 
 ## Accessibility and Usability
