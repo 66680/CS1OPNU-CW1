@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run Text Adventure",
+      "request": "launch",
+      "mainClass": "uk.ac.cs1opnu.adventure.Main",
+      "projectName": "cw1-text-adventure"
+    }
+  ]
+}

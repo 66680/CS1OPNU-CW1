@@ -1,0 +1,6 @@
+target/
+.idea/
+.vscode/settings.local.json
+*.class
+*.log
+.DS_Store
